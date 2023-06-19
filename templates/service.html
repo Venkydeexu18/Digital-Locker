@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Service Page</h1>
+  <form action="{{ url_for('service') }}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="document">Upload Document</label>
+      <input type="file" class="form-control-file" id="document" name="document">
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+  </form>
+
+  <hr>
+
+  <h2>Your Documents</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Filename</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for document in documents %}
+        <tr>
+          <td>{{ document.filename }}</td>
+          <td>
+            <a href="{{ url_for('serve_document', document_id=document.id) }}" class="btn btn-primary">View</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

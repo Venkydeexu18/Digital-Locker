@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <script>
+        function authenticate() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var regexUsername = /^\d{12}$/;
+            var validUsername = regexUsername.test(username);
+            if (!validUsername) {
+                alert("Username must consist of exactly 12 numbers.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Login</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('login') }}" onsubmit="return authenticate()">
+        <label for="username">Aadhar Number:</label>
+        <input type="text" id="username" name="username" pattern="\d{12}" title="Username must consist of exactly 12 numbers." required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login">
+    </form>
+    <a href="{{ url_for('registration') }}">Signup</a>
+    <a href="{{ url_for('forgot_password') }}">Forgot Password</a> 
+</body>
+</html>

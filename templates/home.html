@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    {% if username %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('health') }}">Health</a></li>
+            <li><a href="{{ url_for('transport') }}">Transport</a></li>
+            <li><a href="{{ url_for('service') }}">Service</a></li>
+            <li><a href="{{ url_for('education') }}">Education</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+        <h1>Welcome, {{ name }}!</h1><br>
+        <p>Logged in as: {{ name }}</p>
+    {% else %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('health') }}">Health</a></li>
+            <li><a href="{{ url_for('transport') }}">Transport</a></li>
+            <li><a href="{{ url_for('service') }}">Service</a></li>
+            <li><a href="{{ url_for('education') }}">Education</a></li>
+        </ul>
+    </nav>
+        <h1>Welcome to the Home Page</h1>
+        <a href="{{ url_for('registration') }}">Register</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+</body>
+</html>

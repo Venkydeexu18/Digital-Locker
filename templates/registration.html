@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Page</title>
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var regexUsername = /^\d{12}$/;
+            var regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            var validUsername = regexUsername.test(username);
+            var validEmail = regexEmail.test(email);
+
+            if (!validUsername) {
+                alert("Username must consist of exactly 12 numbers.");
+                return false;
+            }
+            if (!validEmail) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (password.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Registration</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="{{ url_for('registration') }}" onsubmit="return validateForm()">
+        <label for="username">Aadhar Number :</label>
+        <input type="text" id="username" name="username" pattern="\d{12}" title="Aadhar number must consist of exactly 12 numbers." required><br>
+        <label for="name">Name :</label>
+        <input type="name" id="name" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <a href="{{ url_for('login') }}">Login</a>
+</body>
+</html>

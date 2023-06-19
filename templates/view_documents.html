@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Documents</title>
+</head>
+<body>
+    <h1>View Documents</h1>
+    {% if documents %}
+        <ul>
+            {% for document in documents %}
+                <li><a href="{{ url_for('serve_document', filename=document.filename) }}">{{ document.filename }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents found.</p>
+    {% endif %}
+</body>
+</html>
